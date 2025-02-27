@@ -9,5 +9,5 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [tailwind(), icon()],
   site: import.meta.env.PROD ? "https://pdamianik.github.io" : undefined,
-  base: import.meta.env.PROD ? "gitterburger_i" : undefined,
+  base: import.meta.env.PROD ? "gitterburger_i/" : "",
 });
