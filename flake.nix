@@ -1,5 +1,5 @@
 {
-  description = "Java base devShell";
+  description = "Javascript base devShell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -14,7 +14,7 @@
     inherit (pkgs) lib;
   in {
     devShells.${system}.default = pkgs.mkShell {
-      buildInputs = with pkgs; [ nodejs_22 ];
+      buildInputs = with pkgs; [ nodejs_22 yarn pnpm ];
       nativeBuildInputs = with pkgs; [];
     };
   };
