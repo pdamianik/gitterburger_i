@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  course: CollectionEntry<"course">;
+}
+
+const { course } = Astro.props;
+
+function formatTimestamp({
+  hours,
+  minutes,
+  seconds,
+  milliseconds,
+}: {
+  hours: number;
+  minutes: number;
+  seconds: number;
+  milliseconds: number;
+}) {
+  return `${hours}:${minutes}:${seconds}:${milliseconds}`;
+}
+---
+
+<main class="m-5">
+  <h1 class="my-2 text-3xl">{course.data.name}</h1>
+
+  <a href={course.data.url} target="_blank">Link zu TUWEL</a>
+
+  {
+    course.data.vorlesungen.map((vorlesung) => (
+      <div
+        class="vorlesung my-5"
+        id={`${vorlesung.video_info.id.page_id}-${vorlesung.video_info.id.video_id}`}
+      >
+        <a
+          href={`https://tuwel.tuwien.ac.at/mod/opencast/view.php?id=${vorlesung.video_info.id.page_id}&e=${vorlesung.video_info.id.video_id}`}
+          target="_blank"
+        >
+          <h2 class="text-xl mt-7">{vorlesung.video_info.title}</h2>
+        </a>
+
+        <div class="my-5">
+          <div class="mb-2">Caption Info: {vorlesung.caption_info}</div>
+          <div class="text-lg">
+            {vorlesung.captions.map((caption) => (
+              <span
+                title={`${formatTimestamp(caption.start)} - ${formatTimestamp(caption.end)}`}
+                class="mr-2"
+              >
+                {caption.text}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</main>

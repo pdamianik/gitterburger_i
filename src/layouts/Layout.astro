@@ -16,12 +16,12 @@ import Sidebar from "../components/Sidebar.astro";
     <meta name="generator" content={Astro.generator} />
     <title>Gitterburger_i</title>
   </head>
-  <body>
-    <div class="dark:bg-gray-900 bg-white w-full h-full">
+  <body class="dark:text-white">
+    <div class="dark:bg-gray-900 bg-white min-w-full min-h-full pt-16">
       <Navbar />
-      <Sidebar />
+      <!-- <Sidebar /> -->
+      <slot />
     </div>
-    <slot />
   </body>
 </html>
 
