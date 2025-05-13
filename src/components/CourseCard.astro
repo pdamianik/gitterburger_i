@@ -1,0 +1,12 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  course: CollectionEntry<"courses">;
+}
+const { course } = Astro.props;
+---
+
+<a href={`${import.meta.env.BASE_URL}courses/${course.id}`}>
+  {course.data.title}
+</a>

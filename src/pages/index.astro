@@ -1,16 +1,13 @@
 ---
-import Course from "../components/Course.astro";
-import Welcome from "../components/Welcome.astro";
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import CourseCard from "../components/CourseCard.astro";
 
-import { getEntry } from "astro:content";
-const adm = await getEntry("course", "adm");
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const courses = await getCollection("courses");
 ---
 
 <Layout>
-  <Course course={adm!} />
-  <!-- <Welcome /> -->
+  <main class="m-5 flex flex-col">
+    {courses.map((course) => <CourseCard {course} />)}
+  </main>
 </Layout>

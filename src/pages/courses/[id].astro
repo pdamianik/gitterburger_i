@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Course from "../../components/Course.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export const getStaticPaths = (async () => {
+  const courses = await getCollection("courses");
+  return courses.map((course) => ({
+    params: { id: course.id },
+    props: { course },
+  }));
+}) satisfies GetStaticPaths;
+
+const { course } = Astro.props;
+---
+
+<Layout>
+  <Course {course} />
+  Layout>
+</Layout>

@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  course: CollectionEntry<"course">;
+  course: CollectionEntry<"courses">;
 }
 
 const { course } = Astro.props;
@@ -23,7 +23,7 @@ function formatTimestamp({
 ---
 
 <main class="m-5">
-  <h1 class="my-2 text-3xl">{course.data.name}</h1>
+  <h1 class="my-2 text-3xl">{course.data.title}</h1>
 
   <a href={course.data.url} target="_blank">Link zu TUWEL</a>
 
